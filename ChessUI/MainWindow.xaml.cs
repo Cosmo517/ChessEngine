@@ -45,7 +45,7 @@ namespace ChessUI
             InitializeBoard();
             
             // Draw the starting position of the baord with a FEN string
-            DrawBoard("rnbqkbnr/pppppppp/8/8/3P1B2/4PN2/PPP2PPP/RN1QKB1R");
+            DrawBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
         }
 
         private void InitializeBoard()
@@ -91,11 +91,10 @@ namespace ChessUI
                 int column = 0;
                 for (int j = 0; j < sections[i].Length; j++)
                 {
-                    char nextSpot = sections[i][j];
                     // Empty spaces
-                    if (nextSpot > '0' && nextSpot < '9')
+                    if (sections[i][j] > '0' && sections[i][j] < '9')
                     {
-                        column += (sections[i][j] - '0');
+                        column += sections[i][j]  - '0';
                         continue;
                     }
                     // Create the images of the piece
@@ -114,7 +113,7 @@ namespace ChessUI
                             cells[i * 8 + column].getPiece().Source = new BitmapImage(new Uri("Pieces/B_Bishop.png", UriKind.Relative));
                             break;
                         case 'q':
-                            cells[i * 8 + column ].getPiece().Source = new BitmapImage(new Uri("Pieces/B_Queen.png", UriKind.Relative));
+                            cells[i * 8 + column].getPiece().Source = new BitmapImage(new Uri("Pieces/B_Queen.png", UriKind.Relative));
                             break;
                         case 'k':
                             cells[i * 8 + column].getPiece().Source = new BitmapImage(new Uri("Pieces/B_King.png", UriKind.Relative));
