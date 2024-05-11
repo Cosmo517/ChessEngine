@@ -75,7 +75,6 @@ namespace ChessUI
                     else
                         cells[i].getSpace().Fill = new SolidColorBrush(Colors.SandyBrown);
                 }
-                
             }
         }
 
