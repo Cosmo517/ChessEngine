@@ -88,57 +88,58 @@ namespace ChessUI
             // Loop through each section, and then through each string
             for (int i = 0; i < sections.Length; i++)
             {
-                for (int j = 0; j < 8; j++)
+                int column = 0;
+                for (int j = 0; j < sections[i].Length; j++)
                 {
                     // Empty spaces
                     if (sections[i][j] > '0' && sections[i][j] < '9')
                     {
-                        j += sections[i][j] - 1;
-                        if (j > 8)
-                            continue;
+                        column += sections[i][j]  - '0';
+                        continue;
                     }
                     // Create the images of the piece
                     switch (sections[i][j])
                     {
                         case 'p':
-                            cells[i * 8 + j].getPiece().Source = new BitmapImage(new Uri("Pieces/B_Pawn.png", UriKind.Relative));
+                            cells[i * 8 + column].getPiece().Source = new BitmapImage(new Uri("Pieces/B_Pawn.png", UriKind.Relative));
                             break;
                         case 'r':
-                            cells[i * 8 + j].getPiece().Source = new BitmapImage(new Uri("Pieces/B_Rook.png", UriKind.Relative));
+                            cells[i * 8 + column].getPiece().Source = new BitmapImage(new Uri("Pieces/B_Rook.png", UriKind.Relative));
                             break;
                         case 'n':
-                            cells[i * 8 + j].getPiece().Source = new BitmapImage(new Uri("Pieces/B_Knight.png", UriKind.Relative));
+                            cells[i * 8 + column].getPiece().Source = new BitmapImage(new Uri("Pieces/B_Knight.png", UriKind.Relative));
                             break;
                         case 'b':
-                            cells[i * 8 + j].getPiece().Source = new BitmapImage(new Uri("Pieces/B_Bishop.png", UriKind.Relative));
+                            cells[i * 8 + column].getPiece().Source = new BitmapImage(new Uri("Pieces/B_Bishop.png", UriKind.Relative));
                             break;
                         case 'q':
-                            cells[i * 8 + j ].getPiece().Source = new BitmapImage(new Uri("Pieces/B_Queen.png", UriKind.Relative));
+                            cells[i * 8 + column].getPiece().Source = new BitmapImage(new Uri("Pieces/B_Queen.png", UriKind.Relative));
                             break;
                         case 'k':
-                            cells[i * 8 + j].getPiece().Source = new BitmapImage(new Uri("Pieces/B_King.png", UriKind.Relative));
+                            cells[i * 8 + column].getPiece().Source = new BitmapImage(new Uri("Pieces/B_King.png", UriKind.Relative));
                             break;
 
                         case 'P':
-                            cells[i * 8 + j].getPiece().Source = new BitmapImage(new Uri("Pieces/W_Pawn.png", UriKind.Relative));
+                            cells[i * 8 + column].getPiece().Source = new BitmapImage(new Uri("Pieces/W_Pawn.png", UriKind.Relative));
                             break;
                         case 'R':
-                            cells[i * 8 + j].getPiece().Source = new BitmapImage(new Uri("Pieces/W_Rook.png", UriKind.Relative));
+                            cells[i * 8 + column].getPiece().Source = new BitmapImage(new Uri("Pieces/W_Rook.png", UriKind.Relative));
                             break;
                         case 'N':
-                            cells[i * 8 + j].getPiece().Source = new BitmapImage(new Uri("Pieces/W_Knight.png", UriKind.Relative));
+                            cells[i * 8 + column].getPiece().Source = new BitmapImage(new Uri("Pieces/W_Knight.png", UriKind.Relative));
                             break;
                         case 'B':
-                            cells[i * 8 + j].getPiece().Source = new BitmapImage(new Uri("Pieces/W_Bishop.png", UriKind.Relative));
+                            cells[i * 8 + column].getPiece().Source = new BitmapImage(new Uri("Pieces/W_Bishop.png", UriKind.Relative));
                             break;
                         case 'Q':
-                            cells[i * 8 + j].getPiece().Source = new BitmapImage(new Uri("Pieces/W_Queen.png", UriKind.Relative));
+                            cells[i * 8 + column].getPiece().Source = new BitmapImage(new Uri("Pieces/W_Queen.png", UriKind.Relative));
                             break;
                         case 'K':
-                            cells[i * 8 + j].getPiece().Source = new BitmapImage(new Uri("Pieces/W_King.png", UriKind.Relative));
+                            cells[i * 8 + column].getPiece().Source = new BitmapImage(new Uri("Pieces/W_King.png", UriKind.Relative));
                             break;
 
                     }
+                    column++;
                 }
             }
         }
