@@ -7,13 +7,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <UniformGrid x:Name="Cells"
+        <UniformGrid x:Name="CellsBackground"
                             Rows="8"
                             Columns="8">
+            
         </UniformGrid>
         <UniformGrid x:Name="Pieces"
                             Rows="8"
-                            Columns="8">
+                            Columns="8"
+                            RenderOptions.BitmapScalingMode="HighQuality">
         </UniformGrid>
     </Grid>
 </Window>

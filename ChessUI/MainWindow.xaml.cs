@@ -14,17 +14,17 @@ namespace ChessUI
 {
     class Cell
     {
-        string color;
-        Image piece;
-        public Cell(String color, Image piece)
+        Rectangle space;
+        Image piece = null;
+        public Cell(Rectangle space, Image piece)
         {
-            this.color = color;
+            this.space = space;
             this.piece = piece;
         }
 
-        public string getColor() { return color; }
+        public Rectangle getSpace() { return space; }
 
-        public void setColor(String color) { this.color = color; }
+        public void setSpace(Rectangle space) { this.space = space; }
 
         public Image getPiece() { return piece; }
 
@@ -37,7 +37,7 @@ namespace ChessUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly Cell[,] cells = new Cell[8, 8];
+        private Cell[,] cells = new Cell[8, 8];
 
         public MainWindow()
         {
@@ -51,7 +51,38 @@ namespace ChessUI
             {
                 for (int j =  0; j < 8; j++)
                 {
+                    Image image = new Image();
+                    Rectangle rect = new Rectangle();
+                    Pieces.Children.Add(image);
+                    CellsBackground.Children.Add(rect);
+                    cells[i, j] = new Cell(rect, image);
 
+                    if (i % 2 == 0) 
+                    {
+                        if (j % 2 == 0)
+                        {
+                            cells[i, j].getPiece().Source = new BitmapImage(new Uri("Pieces/B_King.png", UriKind.Relative));
+                            cells[i, j].getSpace().Fill = new SolidColorBrush(Colors.White);
+                        }
+                        else
+                        {
+                            cells[i, j].getPiece().Source = new BitmapImage(new Uri("Pieces/B_King.png", UriKind.Relative));
+                            cells[i, j].getSpace().Fill = new SolidColorBrush(Colors.SandyBrown);
+                        }
+                    }
+                    else
+                    {
+                        if (j % 2 != 0)
+                        {
+                            cells[i, j].getPiece().Source = new BitmapImage(new Uri("Pieces/B_King.png", UriKind.Relative));
+                            cells[i, j].getSpace().Fill = new SolidColorBrush(Colors.White);
+                        }
+                        else
+                        {
+                            cells[i, j].getPiece().Source = new BitmapImage(new Uri("Pieces/B_King.png", UriKind.Relative));
+                            cells[i, j].getSpace().Fill = new SolidColorBrush(Colors.SandyBrown);
+                        }
+                    }
                 }
             }
         }
