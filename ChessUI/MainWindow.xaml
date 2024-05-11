@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChessUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Chess" Width="600" SizeToContent="Height"
+        Background="Black">
+    <Viewbox>
+        <Grid x:Name="BoardGrid"
+                   Width="600"
+                   Height="600">
+            <UniformGrid x:Name="CellsBackground"
+                            Rows="8"
+                            Columns="8">
 
-    </Grid>
+            </UniformGrid>
+            <UniformGrid x:Name="Pieces"
+                            Rows="8"
+                            Columns="8"
+                            RenderOptions.BitmapScalingMode="HighQuality">
+            </UniformGrid>
+        </Grid>
+    </Viewbox>
 </Window>

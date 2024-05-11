@@ -9,7 +9,37 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Pieces\B_Bishop.png" />
+    <None Remove="Pieces\B_King.png" />
+    <None Remove="Pieces\B_Knight.png" />
+    <None Remove="Pieces\B_Pawn.png" />
+    <None Remove="Pieces\B_Queen.png" />
+    <None Remove="Pieces\B_Rook.png" />
+    <None Remove="Pieces\W_Bishop.png" />
+    <None Remove="Pieces\W_King.png" />
+    <None Remove="Pieces\W_Knight.png" />
+    <None Remove="Pieces\W_Pawn.png" />
+    <None Remove="Pieces\W_Queen.png" />
+    <None Remove="Pieces\W_Rook.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ChessLogic\ChessLogic.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Pieces\B_Bishop.png" />
+    <Resource Include="Pieces\B_King.png" />
+    <Resource Include="Pieces\B_Knight.png" />
+    <Resource Include="Pieces\B_Pawn.png" />
+    <Resource Include="Pieces\B_Queen.png" />
+    <Resource Include="Pieces\B_Rook.png" />
+    <Resource Include="Pieces\W_Bishop.png" />
+    <Resource Include="Pieces\W_King.png" />
+    <Resource Include="Pieces\W_Knight.png" />
+    <Resource Include="Pieces\W_Pawn.png" />
+    <Resource Include="Pieces\W_Queen.png" />
+    <Resource Include="Pieces\W_Rook.png" />
   </ItemGroup>
 
 </Project>
