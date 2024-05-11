@@ -9,7 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Pieces\B_King.png" />
+    <None Remove="Pieces\W_King.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ChessLogic\ChessLogic.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Pieces\B_King.png" />
+    <Resource Include="Pieces\W_King.png" />
   </ItemGroup>
 
 </Project>

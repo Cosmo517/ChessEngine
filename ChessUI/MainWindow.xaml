@@ -7,6 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <UniformGrid x:Name="PieceGrid"
+                            Rows="8"
+                            Columns="8">
+            <Image Source="Pieces/B_King.png"/>
+            <Image Source="Pieces/W_King.png"/>
+        </UniformGrid>
     </Grid>
 </Window>
