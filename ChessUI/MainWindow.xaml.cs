@@ -37,51 +37,108 @@ namespace ChessUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Cell[,] cells = new Cell[8, 8];
+        private Cell[] cells = new Cell[64];
 
         public MainWindow()
         {
             InitializeComponent();
-            InitializeBackground();
+            InitializeBoard();
+            
+            // Draw the starting position of the baord with a FEN string
+            DrawBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
         }
 
-        private void InitializeBackground()
+        private void InitializeBoard()
         {
-            for (int i = 0; i < 8; i++)
+            // Loop through the array of cells
+            for (int i = 0; i < 64; i++)
             {
-                for (int j =  0; j < 8; j++)
+                // Create a new image and rectangle, and append them
+                // to the proper UniformGrid
+                Image image = new Image();
+                Rectangle rect = new Rectangle();
+                Pieces.Children.Add(image);
+                CellsBackground.Children.Add(rect);
+                cells[i] = new Cell(rect, image);
+                // Display the background cells properly.
+                if (i / 8 % 2 == 0)
                 {
-                    Image image = new Image();
-                    Rectangle rect = new Rectangle();
-                    Pieces.Children.Add(image);
-                    CellsBackground.Children.Add(rect);
-                    cells[i, j] = new Cell(rect, image);
-
-                    if (i % 2 == 0) 
-                    {
-                        if (j % 2 == 0)
-                        {
-                            cells[i, j].getPiece().Source = new BitmapImage(new Uri("Pieces/B_King.png", UriKind.Relative));
-                            cells[i, j].getSpace().Fill = new SolidColorBrush(Colors.White);
-                        }
-                        else
-                        {
-                            cells[i, j].getPiece().Source = new BitmapImage(new Uri("Pieces/B_King.png", UriKind.Relative));
-                            cells[i, j].getSpace().Fill = new SolidColorBrush(Colors.SandyBrown);
-                        }
-                    }
+                    if ((i + 1) % 2 == 0)
+                        cells[i].getSpace().Fill = new SolidColorBrush(Colors.SandyBrown);
                     else
+                        cells[i].getSpace().Fill = new SolidColorBrush(Colors.White);
+                }
+                else
+                {
+                    if ((i + 1) % 2 == 0)
+                        cells[i].getSpace().Fill = new SolidColorBrush(Colors.White);
+                    else
+                        cells[i].getSpace().Fill = new SolidColorBrush(Colors.SandyBrown);
+                }
+                
+            }
+        }
+
+        private void DrawBoard(string FEN)
+        {
+            // Split the FEN string incase its the full string
+            string positions = FEN.Split(' ')[0];
+            // Grab just the algebraic notation
+            string[] sections = positions.Split('/');
+
+            // Loop through each section, and then through each string
+            for (int i = 0; i < sections.Length; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    // Empty spaces
+                    if (sections[i][j] > '0' && sections[i][j] < '9')
                     {
-                        if (j % 2 != 0)
-                        {
-                            cells[i, j].getPiece().Source = new BitmapImage(new Uri("Pieces/B_King.png", UriKind.Relative));
-                            cells[i, j].getSpace().Fill = new SolidColorBrush(Colors.White);
-                        }
-                        else
-                        {
-                            cells[i, j].getPiece().Source = new BitmapImage(new Uri("Pieces/B_King.png", UriKind.Relative));
-                            cells[i, j].getSpace().Fill = new SolidColorBrush(Colors.SandyBrown);
-                        }
+                        j += sections[i][j] - 1;
+                        if (j > 8)
+                            continue;
+                    }
+                    // Create the images of the piece
+                    switch (sections[i][j])
+                    {
+                        case 'p':
+                            cells[i * 8 + j].getPiece().Source = new BitmapImage(new Uri("Pieces/B_Pawn.png", UriKind.Relative));
+                            break;
+                        case 'r':
+                            cells[i * 8 + j].getPiece().Source = new BitmapImage(new Uri("Pieces/B_Rook.png", UriKind.Relative));
+                            break;
+                        case 'n':
+                            cells[i * 8 + j].getPiece().Source = new BitmapImage(new Uri("Pieces/B_Knight.png", UriKind.Relative));
+                            break;
+                        case 'b':
+                            cells[i * 8 + j].getPiece().Source = new BitmapImage(new Uri("Pieces/B_Bishop.png", UriKind.Relative));
+                            break;
+                        case 'q':
+                            cells[i * 8 + j ].getPiece().Source = new BitmapImage(new Uri("Pieces/B_Queen.png", UriKind.Relative));
+                            break;
+                        case 'k':
+                            cells[i * 8 + j].getPiece().Source = new BitmapImage(new Uri("Pieces/B_King.png", UriKind.Relative));
+                            break;
+
+                        case 'P':
+                            cells[i * 8 + j].getPiece().Source = new BitmapImage(new Uri("Pieces/W_Pawn.png", UriKind.Relative));
+                            break;
+                        case 'R':
+                            cells[i * 8 + j].getPiece().Source = new BitmapImage(new Uri("Pieces/W_Rook.png", UriKind.Relative));
+                            break;
+                        case 'N':
+                            cells[i * 8 + j].getPiece().Source = new BitmapImage(new Uri("Pieces/W_Knight.png", UriKind.Relative));
+                            break;
+                        case 'B':
+                            cells[i * 8 + j].getPiece().Source = new BitmapImage(new Uri("Pieces/W_Bishop.png", UriKind.Relative));
+                            break;
+                        case 'Q':
+                            cells[i * 8 + j].getPiece().Source = new BitmapImage(new Uri("Pieces/W_Queen.png", UriKind.Relative));
+                            break;
+                        case 'K':
+                            cells[i * 8 + j].getPiece().Source = new BitmapImage(new Uri("Pieces/W_King.png", UriKind.Relative));
+                            break;
+
                     }
                 }
             }
