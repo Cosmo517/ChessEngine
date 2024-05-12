@@ -8,8 +8,8 @@ namespace ChessLogic
 {
     public enum PieceColor
     {
-        White,
-        Black,
-        None
+        Black = 0,
+        White = 6,
+        None = 12
     }
 }

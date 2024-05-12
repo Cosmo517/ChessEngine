@@ -45,10 +45,12 @@ namespace ChessUI
             InitializeComponent();
             InitializeBoard();
 
-            Gamestate game = new Gamestate(PieceColor.White, Board.Initial());
+            string startingFEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
+
+            Gamestate game = new Gamestate(PieceColor.White, Board.Initial(startingFEN));
 
             // Draw the starting position of the baord with a FEN string
-            DrawBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+            DrawBoard(startingFEN);
         }
 
         private void InitializeBoard()

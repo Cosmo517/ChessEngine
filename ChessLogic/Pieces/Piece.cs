@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ChessLogic.Pieces
 {
-    public abstract class Piece
+    public class Piece
     {
-        public PieceType piece { get; } = PieceType.None;
-        public abstract PieceColor Color { get; }
-        public abstract bool HasMoved { get; set; }
+        public virtual PieceType piece { get; } = PieceType.None;
+        public virtual PieceColor Color { get; } = PieceColor.None;
+        public virtual bool HasMoved { get; set; } = false;
     }
 }
