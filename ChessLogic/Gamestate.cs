@@ -4,10 +4,10 @@
     {
         public Board Board { get; set; }
         public PieceColor CurrentPlayer {  get; private set; }
-        public Gamestate(Board board)
+        public Gamestate(PieceColor startingPlayer, Board board)
         {
             Board = board;
-            CurrentPlayer = PieceColor.White;
+            CurrentPlayer = startingPlayer;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using ChessLogic;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -43,7 +44,9 @@ namespace ChessUI
         {
             InitializeComponent();
             InitializeBoard();
-            
+
+            Gamestate game = new Gamestate(PieceColor.White, Board.Initial());
+
             // Draw the starting position of the baord with a FEN string
             DrawBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
         }

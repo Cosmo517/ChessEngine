@@ -8,6 +8,7 @@ namespace ChessLogic.Pieces
 {
     public enum PieceType
     {
+        None,
         Pawn,
         Bishop,
         Knight,
