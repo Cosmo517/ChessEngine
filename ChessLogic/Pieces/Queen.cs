@@ -9,10 +9,10 @@ namespace ChessLogic.Pieces
     public class Queen : Piece
     {
         public override PieceType piece => PieceType.Queen;
-        public override string Color { get; }
+        public override PieceColor Color { get; }
         public override bool HasMoved { get; set; } = false;
 
-        public Queen(string color)
+        public Queen(PieceColor color)
         {
             Color = color;
         }

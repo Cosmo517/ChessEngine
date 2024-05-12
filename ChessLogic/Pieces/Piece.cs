@@ -9,7 +9,7 @@ namespace ChessLogic.Pieces
     public abstract class Piece
     {
         public abstract PieceType piece { get; }
-        public abstract string Color { get; }
+        public abstract PieceColor Color { get; }
         public abstract bool HasMoved { get; set; }
     }
 }
