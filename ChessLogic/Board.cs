@@ -1,5 +1,4 @@
 ﻿using ChessLogic.Pieces;
-using System.Data.Common;
 using System.Diagnostics;
 
 namespace ChessLogic
@@ -12,6 +11,8 @@ namespace ChessLogic
                                      0b0, 0b0, 0b0, 0b0, 0b0, 0b0, };
 
         public Piece[] boardHelper = new Piece[64];
+
+        public List<Move> moves = new List<Move>();
 
         // The initializing of the board
         public static Board Initial(string FEN)
@@ -114,6 +115,12 @@ namespace ChessLogic
 
             // how to print out to debug the binary bits
             //Debug.WriteLine(Convert.ToString((long)bitboards[0], 2).PadLeft(64, '0'));
+        }
+
+        public List<Move> GenerateMoves()
+        {
+
+            return moves;
         }
     }
 }
