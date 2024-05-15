@@ -186,7 +186,7 @@ namespace ChessLogic
                 if (boardHelper[i].isSlidingPiece)
                 {
                     // Piece is a Queen/Rook/Bishop
-                    GenerateSlidingMoves(startCell, boardHelper[i]);
+                    GenerateSlidingMoves(i, boardHelper[i]);
                 }
                 else
                 {
