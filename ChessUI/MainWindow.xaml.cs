@@ -1,13 +1,8 @@
-﻿using System.Diagnostics;
-using System.Text;
+﻿using ChessLogic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ChessUI
@@ -43,9 +38,13 @@ namespace ChessUI
         {
             InitializeComponent();
             InitializeBoard();
-            
+
+            string startingFEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
+
+            Gamestate game = new Gamestate(PieceColor.White, Board.Initial(startingFEN));
+
             // Draw the starting position of the baord with a FEN string
-            DrawBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+            DrawBoard(startingFEN);
         }
 
         private void InitializeBoard()
@@ -64,7 +63,7 @@ namespace ChessUI
                 if (i / 8 % 2 == 0)
                 {
                     if ((i + 1) % 2 == 0)
-                        cells[i].getSpace().Fill = new SolidColorBrush(Colors.SandyBrown);
+                        cells[i].getSpace().Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3a6ee8"));
                     else
                         cells[i].getSpace().Fill = new SolidColorBrush(Colors.White);
                 }
@@ -73,7 +72,7 @@ namespace ChessUI
                     if ((i + 1) % 2 == 0)
                         cells[i].getSpace().Fill = new SolidColorBrush(Colors.White);
                     else
-                        cells[i].getSpace().Fill = new SolidColorBrush(Colors.SandyBrown);
+                        cells[i].getSpace().Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3a6ee8"));
                 }
             }
         }
