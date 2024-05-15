@@ -14,6 +14,9 @@ namespace ChessLogic
 
         public List<Move> moves = new List<Move>();
 
+        private static readonly int[][] DistanceToEdges;
+        private static int[] DirectionOffset = { -8, 1, 8, -1, -7, 7, 9, -9}; 
+
         // The initializing of the board
         public static Board Initial(string FEN)
         {
@@ -117,9 +120,79 @@ namespace ChessLogic
             //Debug.WriteLine(Convert.ToString((long)bitboards[0], 2).PadLeft(64, '0'));
         }
 
+        private void CellData()
+        {
+            for (int rank = 0; rank < 8; rank++)
+            {
+                for (int file = 0; file < 8; file++)
+                {
+                    int distNorth = rank;
+                    int distSouth = 7 - rank;
+                    int distWest = file;
+                    int distEast = 7 - file;
+
+                    int cell = rank * 8 + file;
+
+                    DistanceToEdges[cell] = [ 
+                        distNorth,
+                        distSouth,
+                        distWest,
+                        distEast,
+                        Math.Min(distNorth, distEast),
+                        Math.Min(distEast, distSouth),
+                        Math.Min(distSouth, distWest),
+                        Math.Min(distWest, distNorth),
+                        ];
+                }
+            }
+        }
+
+        public void GenerateSlidingMoves(int startCell, Piece slidingPiece)
+        {
+            int startRank = 0;
+            int endRank = 8;
+            if (slidingPiece.piece == PieceType.Rook) 
+                endRank = 4;
+            else if (slidingPiece.piece == PieceType.Bishop)
+                startRank = 4;
+            
+            for (int rank = startRank; rank < endRank; rank++)
+            {
+                for (int offset = 0; offset < DistanceToEdges[startCell][rank]; offset++)
+                {
+                    int targetSquare = startCell + DirectionOffset[offset];
+
+                    if (boardHelper[targetSquare].Color == slidingPiece.Color)
+                    {
+                        // Friendly piece, cannot move to that square
+                        break;
+                    }
+                    else if (boardHelper[targetSquare].Color != slidingPiece.Color)
+                    {
+                        // Enemy piece, can take the piece but not move
+                        moves.Add(new Move(startCell, targetSquare));
+                        break;
+                    }
+                    // Empty space, good to go
+                    moves.Add(new Move(startCell, targetSquare));
+                }
+            }
+        }
+
         public List<Move> GenerateMoves()
         {
-
+            for (int i = 0; i < 64; i++)
+            {
+                if (boardHelper[i].isSlidingPiece)
+                {
+                    // Piece is a Queen/Rook/Bishop
+                    GenerateSlidingMoves(startCell, boardHelper[i]);
+                }
+                else
+                {
+                    // Piece is a King/Knight/Pawn
+                }
+            }
             return moves;
         }
     }

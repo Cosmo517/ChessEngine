@@ -63,7 +63,7 @@ namespace ChessUI
                 if (i / 8 % 2 == 0)
                 {
                     if ((i + 1) % 2 == 0)
-                        cells[i].getSpace().Fill = new SolidColorBrush(Colors.SandyBrown);
+                        cells[i].getSpace().Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3a6ee8"));
                     else
                         cells[i].getSpace().Fill = new SolidColorBrush(Colors.White);
                 }
@@ -72,7 +72,7 @@ namespace ChessUI
                     if ((i + 1) % 2 == 0)
                         cells[i].getSpace().Fill = new SolidColorBrush(Colors.White);
                     else
-                        cells[i].getSpace().Fill = new SolidColorBrush(Colors.SandyBrown);
+                        cells[i].getSpace().Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3a6ee8"));
                 }
             }
         }
